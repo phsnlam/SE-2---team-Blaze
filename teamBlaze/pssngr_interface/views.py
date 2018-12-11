@@ -94,6 +94,10 @@ def find_driver(request):
                                                               ).filter(departure_state = departure_state)
                     #.filter(date = date)'''
                 car_pool_posts = CarPoolPost.objects.all()
+                for post in car_pool_posts:
+                    if post.price == 0:
+                        post.delete()
+                car_pool_posts = CarPoolPost.objects.all()
                 posts = []
                 for post in car_pool_posts:
                     if post.destination_state == destination_state and post.departure_state == departure_state:

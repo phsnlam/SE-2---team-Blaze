@@ -110,6 +110,11 @@ def check_car_pool(request):
             user = User.objects.get(id= user_id)
             my_user = user.myuser
             car_pool_posts = my_user.carpoolpost_set.all()
+            for post in car_pool_posts:
+                if post.price == 0:
+                    post.delete()
+
+            car_pool_posts = my_user.carpoolpost_set.all()
             return render(request, 'driver_interface/check_car_pool.html', {'car_pool_posts':car_pool_posts})
         else:
             return Http404
