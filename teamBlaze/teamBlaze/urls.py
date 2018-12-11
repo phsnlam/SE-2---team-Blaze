@@ -22,12 +22,15 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('Home.urls')),
+    path('Home/', include('Home.urls')),
     path('accounts/', include('accounts.urls')),
     path('about/', include('About.urls')),
     path('rolechoice/', include('rolechoice.urls')),
     path('', include('Home.urls')),
-    ]
+    path('passenger/', include('pssngr_interface.urls')),
+    path('driver/', include('driver_interface.urls')),
+    path('test_api/', include('test_api.urls')),
+]
 
 
 urlpatterns += staticfiles_urlpatterns()

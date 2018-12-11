@@ -1,5 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 def Home(request):
-    request.session['user_id'] = None
-    return render(request, 'Home/homepage.html')
+    try:
+        user_id = request.session['user_id']
+        if user_id is not None:
+            return redirect('roleChoice:roleChoice')
+        else:
+            return render(request, 'Home/homepage.html')
+    except:
+        return render(request, 'Home/homepage.html')
+
+def success(request):
+    return render(request, 'Home/success.html')
+
+'''def Feedback_view(request):
+    form = Feedback_Form(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect(request)
+    context = {'form': form}
+    return render(request, 'Home/feedback.html', context )'''
